@@ -76,8 +76,20 @@ while running:
 
     # Draw everything
     screen.fill((0, 0, 0))
-    for ray in rays:
-        pygame.draw.line(screen, (255, 255, 255), (WIDTH / 2, HEIGHT / 2), (ray[0] * 20, ray[1] * 20))
+    for i, ray in enumerate(rays):
+        # Calculate distance to the wall
+        distance = np.sqrt((ray[0] - player_x) ** 2 + (ray[1] - player_y) ** 2)
+
+        # Calculate wall height based on distance
+        wall_height = HEIGHT / distance * 200
+
+        # Calculate wall position on screen
+        wall_x = i
+        wall_y = HEIGHT / 2 - wall_height / 2
+
+        # Draw the wall slice
+        pygame.draw.rect(screen, (255, 255, 255), (wall_x, wall_y, 1, wall_height))
+
     pygame.display.flip()
 
 pygame.quit()
