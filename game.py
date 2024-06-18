@@ -31,6 +31,15 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.MOUSEMOTION:
+            # Get mouse movement
+            dx, dy = pygame.mouse.get_rel()
+            
+            # Update player angle based on mouse movement
+            player_angle += dx * 0.01  # Adjust sensitivity as needed
+
+            # Keep mouse centered
+            pygame.mouse.set_pos(WIDTH // 2, HEIGHT // 2)
 
     # Cast rays
     rays = []
