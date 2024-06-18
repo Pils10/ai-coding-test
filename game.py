@@ -26,8 +26,16 @@ args = parser.parse_args()
 # Load the specified level
 map_data = levels.levels[args.level]
 
+def setup_map(map_data):
+    """Draws the map on the screen"""
+    for y, row in enumerate(map_data):
+        for x, tile in enumerate(row):
+            if tile == '1':
+                pygame.draw.rect(screen, (255, 255, 255), (x * 20, y * 20, 20, 20))
+
 # Game loop
 running = True
+setup_map(map_data)
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -35,7 +43,7 @@ while running:
         if event.type == pygame.MOUSEMOTION:
             # Get mouse movement
             dx, dy = pygame.mouse.get_rel()
-            
+
             # Update player angle based on mouse movement
             player_angle += dx * 0.01  # Adjust sensitivity as needed
 
