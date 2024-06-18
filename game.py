@@ -13,12 +13,17 @@ MAP_WIDTH, MAP_HEIGHT = 20, 20
 # Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-# Set up the map
-map_data = None
-
 # Set up the player
 player_x, player_y = 1, 1
 player_angle = 0
+
+# Parse command-line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument("--level", default="level1", help="Level to load")
+args = parser.parse_args()
+
+# Load the specified level
+map_data = levels.levels[args.level]
 
 # Game loop
 running = True
