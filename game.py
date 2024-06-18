@@ -5,6 +5,7 @@ import levels
 
 # Initialize Pygame
 pygame.init()
+pygame.mouse.set_visible(False)
 
 # Set up some constants
 WIDTH, HEIGHT = 800, 600
