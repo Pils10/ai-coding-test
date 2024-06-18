@@ -78,7 +78,7 @@ while running:
     screen.fill((0, 0, 0))
     for i, ray in enumerate(rays):
         # Calculate distance to the wall
-        distance = np.sqrt((ray[0] - player_x) ** 2 + (ray[1] - player_y) ** 2)
+        distance = np.sqrt((ray[0] - player_x) ** 2 + (ray[1] - player_y) ** 2) + 0.001
 
         # Calculate wall height based on distance
         wall_height = HEIGHT / distance * 200
