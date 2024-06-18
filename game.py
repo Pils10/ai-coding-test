@@ -81,10 +81,10 @@ while running:
         distance = np.sqrt((ray[0] - player_x) ** 2 + (ray[1] - player_y) ** 2) + 0.001
 
         # Calculate wall height based on distance
-        wall_height = HEIGHT / distance * 200
+        wall_height = HEIGHT / (distance / 20)
 
         # Calculate wall position on screen
-        wall_x = i
+        wall_x = i * 2
         wall_y = HEIGHT / 2 - wall_height / 2
 
         # Draw the wall slice
