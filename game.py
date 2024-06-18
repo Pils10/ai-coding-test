@@ -67,7 +67,10 @@ while running:
         while True:
             ray_x += np.cos(ray_angle)
             ray_y += np.sin(ray_angle)
-            if map_data[int(ray_y)][int(ray_x)] == '1':
+            if int(ray_y) >= 0 and int(ray_y) < MAP_HEIGHT and int(ray_x) >= 0 and int(ray_x) < MAP_WIDTH:
+                if map_data[int(ray_y)][int(ray_x)] == '1':
+                    break
+            else:
                 break
         rays.append((ray_x, ray_y))
 
