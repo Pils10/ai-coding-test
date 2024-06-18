@@ -32,19 +32,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # Move the player
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
-        player_x += np.cos(player_angle)
-        player_y += np.sin(player_angle)
-    if keys[pygame.K_s]:
-        player_x -= np.cos(player_angle)
-        player_y -= np.sin(player_angle)
-    if keys[pygame.K_a]:
-        player_angle -= 0.1
-    if keys[pygame.K_d]:
-        player_angle += 0.1
-
     # Cast rays
     rays = []
     for i in range(WIDTH):
@@ -60,8 +47,21 @@ while running:
                 break
         rays.append((ray_x, ray_y))
 
+    # Move the player
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        player_x += np.cos(player_angle) * 0.1
+        player_y += np.sin(player_angle) * 0.1
+    if keys[pygame.K_s]:
+        player_x -= np.cos(player_angle) * 0.1
+        player_y -= np.sin(player_angle) * 0.1
+    if keys[pygame.K_a]:
+        player_angle -= 0.1
+    if keys[pygame.K_d]:
+        player_angle += 0.1
+
     # Draw everything
-    screen.fill((0, 0, 0))
+    screen.fill((192, 192, 192))  # Fill the background gray for the floor
     for i, ray in enumerate(rays):
         # Calculate distance to the wall
         distance = np.sqrt((ray[0] - player_x) ** 2 + (ray[1] - player_y) ** 2) + 0.001
